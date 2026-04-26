@@ -1,0 +1,69 @@
+# ModelParams
+scene_type: "DriveXWaymo"
+resolution_scales: [1]
+cam_num: 1
+camera_list: [0]
+eval: false
+num_pts: 300000
+t_init: 0.1
+groundtruth_path: "/home/weiwei/work_content/BezierGS/dataset/TUM_waymo_format/setting_xyz/groundtruth.txt"
+pointcloud_path: "/home/weiwei/work_content/BezierGS/dataset/TUM_waymo_format/setting_xyz/pointcloud_265-300.npz"
+indicies_path: "/home/weiwei/work_content/BezierGS/dataset/TUM_waymo_format/setting_xyz/indicies_265-300.txt"
+
+# TUM 单视角帧范围（含起始与结束，end_time=743 对应 000000..000742）
+start_time: 265
+end_time: 300 
+
+order: 3
+bbox_frame_interval: 6
+
+# 掩码加载
+load_sky_mask: false
+load_dynamic_mask: true
+load_bbox_mask: false
+#---------------
+undistort: false
+#------------
+
+# OptimizationParams
+iterations: 30000
+opacity_lr: 0.01
+
+densify_until_iter: 15000
+densify_grad_threshold: 0.00017
+sh_increase_interval: 2000
+
+prune_interval: 200
+render_type: bezier
+static_thresh: 1.0
+thresh_opa_prune: 0.005
+# opa_init: 0.01
+opa_init: 0.1
+
+# Loss 权重（无天空相关损失）
+lambda_dssim: 0.2
+lambda_sky_opa: 0.0
+lambda_inv_depth: 0.1
+lambda_lidar: 1.0
+lidar_decay: 1.0
+lambda_velocity: 1.0
+lambda_dynamic_render: 1e-1
+lambda_icc: 1e-2
+
+object_accum_mode: mask
+use_debug_20frames: true
+use_box_world_center: true
+dynamic_std_thresh: 0
+dynamic_distance_thresh: 0
+npz_points_are_world: true
+strict_bkgd_exclusion: true
+
+use_gt_depth: true
+truncation_mode: ego_x
+projection_truncation: cam_z
+bbox_shrink: 0.1
+use_env_map: false
+mask_render_outdir: '/home/weiwei/work_content/BezierGS/eval_output/tum/smoke_test_pca_without_env_map_testDynamicObj/dynamic'
+center_ego_pose: true
+align_obj_bkgd_coords: true
+obj_points_filter_method: 'pca'
