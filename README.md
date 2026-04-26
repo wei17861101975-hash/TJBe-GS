@@ -5,4 +5,4 @@ The code  is coming soon.
 
 There are some effect diagrams.
 ![Demo](sy_result.gif)
-
+![Demo](sy2_result.gif)
